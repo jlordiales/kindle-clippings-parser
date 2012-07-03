@@ -1,6 +1,37 @@
 *.class
 
+#Ignore Mac files
+.DS_Store
+
+#Ignore IDEA files 
+*.iml
+*.ipr
+*.iws
+target/
+.idea/
+
+#Eclipse files
+.project
+.classpath
+.settings
+
 # Package Files #
 *.jar
 *.war
 *.ear
+*.zip
+*.tar
+*.tgz
+
+#Binary and Build Directories
+build/
+bin/
+target/
+.svn
+.gradle
+
+#Logs
+*.log
+
+#Backup files
+*~
