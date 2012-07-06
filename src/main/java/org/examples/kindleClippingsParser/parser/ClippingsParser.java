@@ -1,4 +1,4 @@
-package org.examples.kindleClippingsParser;
+package org.examples.kindleClippingsParser.parser;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

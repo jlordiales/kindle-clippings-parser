@@ -35,6 +35,9 @@ public class Clipping {
 
 	private Book getBookFromClippingLine(final String bookLine) {
 		List<String> bookSections = Lists.newArrayList(Splitter.on('(').trimResults().split(bookLine));
+		if (bookSections.size() < 2) {
+		    throw new InvalidFormatException();
+		}
 		final String bookTitleSection = bookSections.get(0);
 		final String authorSection = bookSections.get(1);
 		return new Book(bookTitleSection.trim(), authorSection.substring(0, authorSection.length()-1).trim());
