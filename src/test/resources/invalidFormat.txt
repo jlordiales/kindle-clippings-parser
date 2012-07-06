@@ -1,0 +1,4 @@
+﻿this is just a regular text file
+
+without the kindle clippings format
+so the app should throw an exception
