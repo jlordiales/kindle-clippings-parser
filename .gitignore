@@ -1,4 +1,6 @@
 *.class
+*.html
+*.lyx
 
 #Ignore Mac files
 .DS_Store

@@ -10,23 +10,24 @@ import org.examples.kindleClippingsParser.exception.InvalidFormatException;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 
-public class Clipping {
+public class Clipping implements Comparable<Clipping> {
 	private final Book book;
 	private final int pageNumber;
 	private final String highlight;
-	
-	public Clipping(String clippingBlock) {
+
+	public Clipping(final String clippingBlock) {
 		super();
-		List<String> clippingSections = Lists.newArrayList(Splitter.on("\r\n").omitEmptyStrings().trimResults().split(clippingBlock));
+		final List<String> clippingSections = Lists.newArrayList(Splitter.on("\r\n").omitEmptyStrings().trimResults()
+				.split(clippingBlock));
 		if (clippingSections.size() < 3) {
 			throw new InvalidFormatException("The clipping file has an invalid format");
 		}
 		this.book = getBookFromClippingLine(clippingSections.get(0));
 		this.pageNumber = getPageFromClippingLine(clippingSections.get(1));
-		this.highlight = clippingSections.get(2); 
+		this.highlight = clippingSections.get(2);
 	}
-	
-	public Clipping(Book book, int pageNumber, String highlight) {
+
+	public Clipping(final Book book, final int pageNumber, final String highlight) {
 		super();
 		this.book = book;
 		this.pageNumber = pageNumber;
@@ -34,25 +35,25 @@ public class Clipping {
 	}
 
 	private Book getBookFromClippingLine(final String bookLine) {
-		List<String> bookSections = Lists.newArrayList(Splitter.on('(').trimResults().split(bookLine));
+		final List<String> bookSections = Lists.newArrayList(Splitter.on('(').trimResults().split(bookLine));
 		if (bookSections.size() < 2) {
-		    throw new InvalidFormatException();
+			throw new InvalidFormatException();
 		}
 		final String bookTitleSection = bookSections.get(0);
 		final String authorSection = bookSections.get(1);
-		return new Book(bookTitleSection.trim(), authorSection.substring(0, authorSection.length()-1).trim());
+		return new Book(bookTitleSection.trim(), authorSection.substring(0, authorSection.length() - 1).trim());
 	}
-	
+
 	private int getPageFromClippingLine(final String pageLine) {
-		List<String> lineSections = Lists.newArrayList(Splitter.on('|').trimResults().split(pageLine));
+		final List<String> lineSections = Lists.newArrayList(Splitter.on('|').trimResults().split(pageLine));
 		final String pageNumberSection = lineSections.get(0);
 		final int pagePosition = pageNumberSection.indexOf("Page");
 		if (pagePosition != -1) {
-			return Integer.valueOf(pageNumberSection.substring(pagePosition+5));
+			return Integer.valueOf(pageNumberSection.substring(pagePosition + 5));
 		}
 		return 0;
 	}
-	
+
 	public Book getBook() {
 		return book;
 	}
@@ -80,7 +81,7 @@ public class Clipping {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -90,9 +91,14 @@ public class Clipping {
 		if (!(obj instanceof Clipping)) {
 			return false;
 		}
-		Clipping other = (Clipping) obj;
-		return new EqualsBuilder().append(this.book, other.getBook())
-				.append(this.highlight, other.getHighlight()).isEquals();
+		final Clipping other = (Clipping) obj;
+		return new EqualsBuilder().append(this.book, other.getBook()).append(this.highlight, other.getHighlight())
+				.isEquals();
+	}
+
+	@Override
+	public int compareTo(final Clipping o) {
+		return this.pageNumber - o.getPageNumber();
 	}
 
 }

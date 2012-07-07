@@ -5,8 +5,8 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 public class Book {
 	private final String title;
 	private final String author;
-	
-	public Book(String title, String author) {
+
+	public Book(final String title, final String author) {
 		super();
 		this.title = title;
 		this.author = author;
@@ -19,7 +19,7 @@ public class Book {
 	public String getAuthor() {
 		return author;
 	}
-	
+
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.toString(this);
@@ -29,13 +29,13 @@ public class Book {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((author == null) ? 0 : author.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + (author == null ? 0 : author.hashCode());
+		result = prime * result + (title == null ? 0 : title.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -45,7 +45,7 @@ public class Book {
 		if (!(obj instanceof Book)) {
 			return false;
 		}
-		Book other = (Book) obj;
+		final Book other = (Book) obj;
 		if (author == null) {
 			if (other.author != null) {
 				return false;
@@ -62,6 +62,5 @@ public class Book {
 		}
 		return true;
 	}
-	
 
 }

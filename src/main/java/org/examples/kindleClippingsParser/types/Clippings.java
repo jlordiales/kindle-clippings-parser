@@ -6,16 +6,16 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 public class Clippings {
-	private final Multimap<String,Clipping> clippings = HashMultimap.create();
-	
+	private final Multimap<String, Clipping> clippings = HashMultimap.create();
+
 	public void addClipping(final String bookTitle, final Clipping clipping) {
 		clippings.put(bookTitle, clipping);
 	}
-	
-	public Collection<Clipping> getClippingsForBookWithTitle(final String bookTitle){
+
+	public Collection<Clipping> getClippingsForBookWithTitle(final String bookTitle) {
 		return clippings.get(bookTitle);
 	}
-	
+
 	public Collection<String> getAllBookTitles() {
 		return clippings.keySet();
 	}
@@ -24,12 +24,12 @@ public class Clippings {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((clippings == null) ? 0 : clippings.hashCode());
+		result = prime * result + (clippings == null ? 0 : clippings.hashCode());
 		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -39,7 +39,7 @@ public class Clippings {
 		if (!(obj instanceof Clippings)) {
 			return false;
 		}
-		Clippings other = (Clippings) obj;
+		final Clippings other = (Clippings) obj;
 		if (clippings == null) {
 			if (other.clippings != null) {
 				return false;

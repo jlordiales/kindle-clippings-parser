@@ -1,6 +1,8 @@
 package org.examples.kindleClippingsParser;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.examples.kindleClippingsParser.parser.ClippingParsers;
@@ -12,14 +14,14 @@ public class ParserLauncher {
 
 	/**
 	 * @param args
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 */
-	public static void main(String[] args) throws FileNotFoundException, IOException {
-		final OutputWritter writter = OutputWritters.getHtmlWritter();
+	public static void main(final String[] args) throws FileNotFoundException, IOException {
+		final OutputWritter writter = OutputWritters.getLatexWritter(new FileOutputStream(new File("reviews.lyx")));
 		final ClippingsParser parser = ClippingParsers.createSequentialParser(writter);
-		
-		parser.parseClippingFile("src/test/resources/duplicates.txt");
+
+		parser.parseClippingFile("/home/jose/Documents/clippings.txt");
 
 	}
 
