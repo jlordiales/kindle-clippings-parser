@@ -8,7 +8,8 @@ import org.examples.kindleClippingsParser.types.Clipping;
 import org.examples.kindleClippingsParser.types.Clippings;
 import org.examples.kindleClippingsParser.writers.OutputWritter;
 
-abstract class AbstractClippingsParser implements ClippingsParser {
+public abstract class AbstractClippingsParser implements ClippingsParser {
+	private static final String ASCII_REGEX = "[^\\x00-\\x7F]";
 	protected final static String SEPARATING_STRING = "==========";
 	private final OutputWritter writter;
 
@@ -36,7 +37,7 @@ abstract class AbstractClippingsParser implements ClippingsParser {
 			IOException;
 
 	String removeNonAsciiCharacters(final String stream) {
-		return stream.replaceAll("[^\\x00-\\x7F]", "");
+		return stream.replaceAll(ASCII_REGEX, "");
 	}
 
 }
