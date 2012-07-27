@@ -55,28 +55,28 @@ public abstract class AbstractClippingsParserTest {
 						wondersTitle,
 						new Clipping(
 								wondersOfTheUniverse,
-								0,
+								0,0,
 								parser.removeNonAsciiCharacters("The scientific project is ultimately modest: it doesn’t seek universal truths and it doesn’t seek absolutes, it simply seeks to understand – and therein lies its power and value.")));
 		clippings
 				.addClipping(
 						restTitle,
 						new Clipping(
 								restInPractice,
-								31,
+								31,474,
 								parser.removeNonAsciiCharacters("REST describes the Web as a distributed hypermedia application whose linked resources communicate by exchanging representations of resource state.")));
 		clippings
 				.addClipping(
 						restTitle,
 						new Clipping(
 								restInPractice,
-								32,
+								32,483,
 								parser.removeNonAsciiCharacters("The idea is simple, and yet very powerful. A distributed application makes forward progress by transitioning from one state to another, just like a state machine. The difference from traditional state machines, however, is that the possible states and the transitions between them are not known in advance. Instead, as the application reaches a new state, the next possible transitions are discovered. It’s like a treasure hunt.")));
 		clippings
 				.addClipping(
 						effectiveJavaTitle,
 						new Clipping(
 								effectiveJava,
-								89,
+								89,1356,
 								parser.removeNonAsciiCharacters("Therefore, if you override the clone method in a nonfinal class, you should return an object obtained by invoking super.clone. If all of a class’s superclasses obey this rule, then invoking super.clone will eventually invoke Object’s clone method, creating an instance of the right class.")));
 		return clippings;
 	}

@@ -18,10 +18,11 @@ public class ParserLauncher {
 	 * @throws FileNotFoundException
 	 */
 	public static void main(final String[] args) throws FileNotFoundException, IOException {
-		final OutputWritter writter = OutputWritters.getLatexWritter(new FileOutputStream(new File("reviews.lyx")));
+		final OutputWritter writter = OutputWritters.getLatexWritter(new FileOutputStream(new File("/home/jose/reviews.lyx")));
 		final ClippingsParser parser = ClippingParsers.createSequentialParser(writter);
 
 		parser.parseClippingFile("/home/jose/Documents/clippings.txt");
+		System.out.println("Parsing finished");
 
 	}
 

@@ -14,6 +14,7 @@ public class Clipping implements Comparable<Clipping> {
 	private final Book book;
 	private final int pageNumber;
 	private final String highlight;
+	private final int location;
 
 	public Clipping(final String clippingBlock) {
 		super();
@@ -24,14 +25,16 @@ public class Clipping implements Comparable<Clipping> {
 		}
 		this.book = getBookFromClippingLine(clippingSections.get(0));
 		this.pageNumber = getPageFromClippingLine(clippingSections.get(1));
+		this.location = getLocationFromClippingLine(clippingSections.get(1));
 		this.highlight = clippingSections.get(2);
 	}
 
-	public Clipping(final Book book, final int pageNumber, final String highlight) {
+	public Clipping(final Book book, final int pageNumber, final int location,final String highlight) {
 		super();
 		this.book = book;
 		this.pageNumber = pageNumber;
 		this.highlight = highlight;
+		this.location = location;
 	}
 
 	private Book getBookFromClippingLine(final String bookLine) {
@@ -48,10 +51,25 @@ public class Clipping implements Comparable<Clipping> {
 		final List<String> lineSections = Lists.newArrayList(Splitter.on('|').trimResults().split(pageLine));
 		final String pageNumberSection = lineSections.get(0);
 		final int pagePosition = pageNumberSection.indexOf("Page");
-		if (pagePosition != -1) {
-			return Integer.valueOf(pageNumberSection.substring(pagePosition + 5));
+		if (pagePosition == -1) {
+			return 0;
 		}
-		return 0;
+		return Integer.valueOf(pageNumberSection.substring(pagePosition + 5));
+	}
+	
+	private int getLocationFromClippingLine(final String pageLine) {
+		final List<String> lineSections = Lists.newArrayList(Splitter.on('|').trimResults().split(pageLine));
+		final String locationSection = lineSections.get(1);
+		final int locationPositionBegin = locationSection.indexOf("Loc.");
+		final int locationPositionEnd = locationSection.indexOf("-");
+		if (locationPositionBegin == -1) {
+			return 0;
+		}
+		if (locationPositionEnd == -1) {
+			return Integer.valueOf(locationSection.substring(locationPositionBegin + 5));
+		}
+		return Integer.valueOf(locationSection.substring(locationPositionBegin + 5,locationPositionEnd));
+		
 	}
 
 	public Book getBook() {
@@ -64,6 +82,10 @@ public class Clipping implements Comparable<Clipping> {
 
 	public int getPageNumber() {
 		return pageNumber;
+	}
+
+	public int getLocation() {
+		return location;
 	}
 
 	public String getHighlight() {
@@ -98,7 +120,11 @@ public class Clipping implements Comparable<Clipping> {
 
 	@Override
 	public int compareTo(final Clipping o) {
-		return this.pageNumber - o.getPageNumber();
+		int compare = this.pageNumber - o.getPageNumber();
+		if (compare == 0) {
+			compare = this.location - o.getLocation();
+		}
+		return compare;
 	}
 
 }

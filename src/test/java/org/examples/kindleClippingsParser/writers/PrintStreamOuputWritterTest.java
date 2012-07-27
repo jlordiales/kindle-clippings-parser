@@ -40,10 +40,10 @@ public abstract class PrintStreamOuputWritterTest {
 		final Book book1 = new Book("book1", "author1");
 		final Book book2 = new Book("book2", "author2");
 
-		clippings.addClipping(book1.getTitle(), new Clipping(book1, 30, "highlight1b1"));
-		clippings.addClipping(book1.getTitle(), new Clipping(book1, 2, "highlight2b1"));
-		clippings.addClipping(book1.getTitle(), new Clipping(book1, 15, "highlight3b1"));
-		clippings.addClipping(book2.getTitle(), new Clipping(book2, 22, "highlight1b2"));
+		clippings.addClipping(book1.getTitle(), new Clipping(book1, 30,15, "highlight1b1"));
+		clippings.addClipping(book1.getTitle(), new Clipping(book1, 2,30, "highlight2b1"));
+		clippings.addClipping(book1.getTitle(), new Clipping(book1, 30,12, "highlight3b1"));
+		clippings.addClipping(book2.getTitle(), new Clipping(book2, 22,5, "highlight1b2"));
 		return clippings;
 	}
 
