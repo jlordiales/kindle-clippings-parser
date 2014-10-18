@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import org.examples.kindleClippingsParser.parser.ClippingParsers;
 import org.examples.kindleClippingsParser.parser.ClippingsParser;
@@ -17,13 +18,17 @@ public class ParserLauncher {
 	 * @throws IOException
 	 * @throws FileNotFoundException
 	 */
-	public static void main(final String[] args) throws FileNotFoundException, IOException {
-		final OutputWritter writter = OutputWritters.getLatexWritter(new FileOutputStream(new File("/home/jose/reviews.lyx")));
-		final ClippingsParser parser = ClippingParsers.createSequentialParser(writter);
+	public static void main(final String[] args) throws FileNotFoundException, IOException, URISyntaxException {
+        File clippingsFile = new File(Thread.currentThread().getContextClassLoader().getResource(
+            "clippings.txt").toURI());
+        final OutputWritter writter = OutputWritters.getLatexWritter(
+            new FileOutputStream(new File("clippings.lyx")));
 
-		parser.parseClippingFile("/home/jose/Documents/clippings.txt");
-		System.out.println("Parsing finished");
+        final ClippingsParser parser = ClippingParsers.createSequentialParser(writter);
 
-	}
+        parser.parseClippingFile(clippingsFile.getAbsolutePath());
+        System.out.println("Parsing finished");
+
+    }
 
 }

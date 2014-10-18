@@ -1,0 +1,20 @@
+﻿Wonders of the Universe (Andrew Cohen and Professor Brian Cox)
+- Highlight Loc. 262-63  | Added on Monday, December 26, 2011, 04:20 AM
+
+The scientific project is ultimately modest: it doesn’t seek universal truths and it doesn’t seek absolutes, it simply seeks to understand – and therein lies its power and value.
+==========
+REST in Practice: Hypermedia and Systems Architecture (Jim Webber, Savas Parastatidis and Ian Robinson)
+- Highlight on Page 31 | Loc. 474-75  | Added on Friday, March 16, 2012, 06:20 PM
+
+REST describes the Web as a distributed hypermedia application whose linked resources communicate by exchanging representations of resource state.
+==========
+REST in Practice: Hypermedia and Systems Architecture (Jim Webber, Savas Parastatidis and Ian Robinson)
+- Highlight on Page 32 | Loc. 483-86  | Added on Friday, March 16, 2012, 06:24 PM
+
+The idea is simple, and yet very powerful. A distributed application makes forward progress by transitioning from one state to another, just like a state machine. The difference from traditional state machines, however, is that the possible states and the transitions between them are not known in advance. Instead, as the application reaches a new state, the next possible transitions are discovered. It’s like a treasure hunt.
+==========
+Effective Java (Joshua Bloch)
+- Highlight on Page 89 | Loc. 1356-58  | Added on Friday, June 03, 2011, 05:58 AM
+
+Therefore, if you override the clone method in a nonfinal class, you should return an object obtained by invoking super.clone. If all of a class’s superclasses obey this rule, then invoking super.clone will eventually invoke Object’s clone method, creating an instance of the right class.
+==========
